@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
@@ -113,10 +114,12 @@ public class VKLoginActivity extends AppCompatActivity {
                                             + "/Download/" + titles.get(position));
                                     context.startActivity(intent);
                                 } else {
+                                    ProgressBar progressBar;
                                     URLSendTask urlSendTask2 = new URLSendTask(code,vkDocuments.get(position));
                                     urlSendTask2.execute();
                                     FileDownloadTask fileDownloadTask = new FileDownloadTask(context, titles.get(position), vkDocuments.get(position));
                                     fileDownloadTask.execute(new String[]{vkDocuments.get(position)});
+
                                 }
                             }
                         });

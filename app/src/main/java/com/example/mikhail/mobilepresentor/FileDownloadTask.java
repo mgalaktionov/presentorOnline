@@ -1,10 +1,14 @@
 package com.example.mikhail.mobilepresentor;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.view.View;
+import android.widget.ProgressBar;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -19,6 +23,7 @@ public class FileDownloadTask extends AsyncTask<String, String, String> {
     private String title;
     private File File;
     private String pdfUrl;
+    private ProgressBar pb;
 
     public FileDownloadTask(Context context, String title, String pdfUrl) {
         FileDownloadTask.context = context;
@@ -28,6 +33,7 @@ public class FileDownloadTask extends AsyncTask<String, String, String> {
 
     @Override
     protected String doInBackground(String[] urls) {
+
 
         DefaultHttpClient client = new DefaultHttpClient();
         String ret = "";
@@ -47,6 +53,7 @@ public class FileDownloadTask extends AsyncTask<String, String, String> {
                 e.printStackTrace();
             }
         }
+
         return ret;
     }
 
